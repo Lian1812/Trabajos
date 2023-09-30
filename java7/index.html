@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Números Primos Intermedios</title>
+</head>
+<body>
+    <h1>Números Primos Intermedios</h1>
+    <p>Ingresa dos números:</p>
+    <input type="number" id="numero1" placeholder="Primer número">
+    <input type="number" id="numero2" placeholder="Segundo número">
+    <button onclick="mostrarPrimosIntermedios()">Calcular</button>
+    <p id="resultado"></p>
+
+    <script>
+        function mostrarPrimosIntermedios() {
+            // Obtén los números ingresados por el usuario
+            const numero1 = parseInt(document.getElementById('numero1').value);
+            const numero2 = parseInt(document.getElementById('numero2').value);
+
+            // Verifica que ambos números sean enteros válidos
+            if (!isNaN(numero1) && !isNaN(numero2) && Number.isInteger(numero1) && Number.isInteger(numero2)) {
+                // Asegúrate de que el primer número sea menor que el segundo
+                if (numero1 < numero2) {
+                    let primosIntermedios = [];
+
+                    // Itera desde el primer número hasta el segundo número
+                    for (let i = numero1; i <= numero2; i++) {
+                        if (esPrimo(i)) {
+                            primosIntermedios.push(i);
+                        }
+                    }
+
+                    // Muestra los números primos intermedios en el elemento HTML
+                    if (primosIntermedios.length > 0) {
+                        document.getElementById('resultado').textContent = 'Números primos intermedios: ' + primosIntermedios.join(', ');
+                    } else {
+                        document.getElementById('resultado').textContent = 'No hay números primos intermedios.';
+                    }
+                } else {
+                    document.getElementById('resultado').textContent = 'El segundo número debe ser mayor que el primero.';
+                }
+            } else {
+                // Si los números no son válidos, muestra un mensaje de error
+                document.getElementById('resultado').textContent = 'Ingresa dos números enteros válidos.';
+            }
+        }
+
+        // Función para verificar si un número es primo
+        function esPrimo(numero) {
+            if (numero <= 1) {
+                return false;
+            }
+            for (let i = 2; i <= Math.sqrt(numero); i++) {
+                if (numero % i === 0) {
+                    return false;
+                }
+            }
+            return true;
+        }
+    </script>
+</body>
+</html>

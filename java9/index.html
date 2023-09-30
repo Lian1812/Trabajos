@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Conversión de Kelvin a Celsius y Fahrenheit</title>
+</head>
+<body>
+    <h1>Conversión de Kelvin a Celsius y Fahrenheit</h1>
+    <p>Ingresa la temperatura en Kelvin (°K):</p>
+    <input type="number" id="temperaturaKelvin">
+    <button onclick="convertirKelvin()">Convertir</button>
+    <p id="resultadoCelsius"></p>
+    <p id="resultadoFahrenheit"></p>
+
+    <script>
+        function convertirKelvin() {
+            const temperaturaKelvin = parseFloat(document.getElementById('temperaturaKelvin').value);
+
+            if (!isNaN(temperaturaKelvin)) {
+                const temperaturaCelsius = (temperaturaKelvin - 273.15).toFixed(2);
+                const temperaturaFahrenheit = ((temperaturaKelvin - 273.15) * 9/5 + 32).toFixed(2);
+
+                document.getElementById('resultadoCelsius').textContent = `Temperatura en Celsius (°C): ${temperaturaCelsius}°C`;
+                document.getElementById('resultadoFahrenheit').textContent = `Temperatura en Fahrenheit (°F): ${temperaturaFahrenheit}°F`;
+            } else {
+                document.getElementById('resultadoCelsius').textContent = 'Ingresa una temperatura válida en Kelvin (°K).';
+                document.getElementById('resultadoFahrenheit').textContent = '';
+            }
+        }
+    </script>
+</body>
+</html>

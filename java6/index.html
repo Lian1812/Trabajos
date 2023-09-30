@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Suma de números pares</title>
+</head>
+<body>
+    <h1>Suma de números pares anteriores</h1>
+    <p>Ingresa un número:</p>
+    <input type="number" id="numero">
+    <button onclick="sumarNumerosParesAnteriores()">Calcular</button>
+    <p id="resultado"></p>
+
+    <script>
+        function sumarNumerosParesAnteriores() {
+            // Obtén el número ingresado por el usuario
+            const numero = parseInt(document.getElementById('numero').value);
+
+            // Verifica si el número es un entero válido
+            if (!isNaN(numero) && Number.isInteger(numero) && numero >= 0) {
+                let suma = 0;
+
+                // Itera desde 0 hasta el número ingresado
+                for (let i = 0; i < numero; i++) {
+                    // Si el número es par, agrégalo a la suma
+                    if (i % 2 === 0) {
+                        suma += i;
+                    }
+                }
+
+                // Muestra el resultado en el elemento HTML
+                document.getElementById('resultado').textContent = `La suma de números pares anteriores a ${numero} es: ${suma}`;
+            } else {
+                // Si el número no es válido, muestra un mensaje de error
+                document.getElementById('resultado').textContent = 'Ingresa un número entero válido mayor o igual a 0.';
+            }
+        }
+    </script>
+</body>
+</html>

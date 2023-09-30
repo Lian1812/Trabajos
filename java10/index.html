@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculadora Geométrica</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            width: 300px;
+            margin: 0 auto;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Calculadora Geométrica</h1>
+        <select id="figura">
+            <option value="circulo">Círculo</option>
+            <option value="triangulo">Triángulo</option>
+            <option value="rectangulo">Rectángulo</option>
+        </select>
+        <br>
+        <div id="inputs"></div>
+        <button onclick="calcular()">Calcular</button>
+        <p id="resultado"></p>
+    </div>
+
+    <script>
+        function calcular() {
+            const figura = document.getElementById('figura').value;
+            const resultadoElement = document.getElementById('resultado');
+            const inputs = document.getElementById('inputs');
+            inputs.innerHTML = '';
+            resultadoElement.textContent = '';
+
+            if (figura === 'circulo') {
+                const radio = parseFloat(prompt('Ingresa el radio del círculo:'));
+                if (!isNaN(radio)) {
+                    const perimetro = 2 * Math.PI * radio;
+                    const area = Math.PI * Math.pow(radio, 2);
+                    resultadoElement.textContent = `Perímetro: ${perimetro.toFixed(2)}, Área: ${area.toFixed(2)}`;
+                }
+            } else if (figura === 'triangulo') {
+                const base = parseFloat(prompt('Ingresa la base del triángulo:'));
+                const altura = parseFloat(prompt('Ingresa la altura del triángulo:'));
+                if (!isNaN(base) && !isNaN(altura)) {
+                    const perimetro = 3 * base;
+                    const area = (base * altura) / 2;
+                    resultadoElement.textContent = `Perímetro: ${perimetro.toFixed(2)}, Área: ${area.toFixed(2)}`;
+                }
+            } else if (figura === 'rectangulo') {
+                const lado1 = parseFloat(prompt('Ingresa el primer lado del rectángulo:'));
+                const lado2 = parseFloat(prompt('Ingresa el segundo lado del rectángulo:'));
+                if (!isNaN(lado1) && !isNaN(lado2)) {
+                    const perimetro = 2 * (lado1 + lado2);
+                    const area = lado1 * lado2;
+                    resultadoElement.textContent = `Perímetro: ${perimetro.toFixed(2)}, Área: ${area.toFixed(2)}`;
+                }
+            }
+        }
+
+        document.getElementById('figura').addEventListener('change', function() {
+            const figura = this.value;
+            const inputs = document.getElementById('inputs');
+            inputs.innerHTML = '';
+
+            if (figura === 'circulo') {
+                inputs.innerHTML = 'Radio: <input type="number" id="radio">';
+            } else if (figura === 'triangulo') {
+                inputs.innerHTML = 'Base: <input type="number" id="base"><br>Altura: <input type="number" id="altura">';
+            } else if (figura === 'rectangulo') {
+                inputs.innerHTML = 'Lado 1: <input type="number" id="lado1"><br>Lado 2: <input type="number" id="lado2">';
+            }
+        });
+    </script>
+</body>
+</html>
